@@ -1,0 +1,19 @@
+﻿<metro:MetroWindow x:Class="FilterManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:view="clr-namespace:FilterManager.Views"
+        xmlns:local="clr-namespace:FilterManager"
+        mc:Ignorable="d"
+        Title="File System Mini Filter Manager" MinHeight="300" MinWidth="400"
+        TitleCaps="False" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" >
+    <metro:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <icons:PackIconEntypo VerticalAlignment="Center" HorizontalAlignment="Center" Kind="Aircraft" Width="20" Height="20" Foreground="{DynamicResource WhiteBrush}"/>
+        </DataTemplate>
+    </metro:MetroWindow.IconTemplate>
+    <view:MainView />
+</metro:MetroWindow>
