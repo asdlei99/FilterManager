@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FilterManager.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,6 +14,10 @@ namespace FilterManager {
 	public partial class App : Application {
 		protected override void OnStartup(StartupEventArgs e) {
 			base.OnStartup(e);
+
+			var vm = new MainViewModel();
+			var win = new MainWindow { DataContext = vm };
+			win.Show();
 		}
 	}
 }

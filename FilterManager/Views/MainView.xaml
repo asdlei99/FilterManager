@@ -4,6 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilterManager.Views"
+             xmlns:z="http://zodiacon.wpf/2016"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -12,14 +15,53 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3">
-            
+            <StackPanel.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource MetroButton}">
+                    <Setter Property="Width" Value="80" />
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="Margin" Value="4,2" />
+                </Style>
+            </StackPanel.Resources>
+            <Button Command="{Binding RefreshCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Refresh" />
+                </StackPanel>
+            </Button>
         </StackPanel>
-        <TreeView ItemsSource="{Binding Items}">
-            
+        <TreeView Margin="2" ItemsSource="{Binding Items}" Grid.Row="1">
+            <i:Interaction.Behaviors>
+                <z:TreeViewSelectedItemBehavior SelectedItem="{Binding SelectedTreeItem, Mode=TwoWay, Delay=300}" />
+            </i:Interaction.Behaviors>
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="TreeViewItem" BasedOn="{StaticResource MetroTreeViewItem}">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TreeView.ItemContainerStyle>
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                    <StackPanel Orientation="Horizontal">
+                        <icons:PackIconFontAwesome Kind="{Binding Icon}" Width="24" Height="24" Foreground="Blue"/>
+                        <TextBlock Text="{Binding Text}" Margin="4,0,0,0" VerticalAlignment="Center" FontSize="14"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
         </TreeView>
+        <DataGrid Margin="2" Grid.Row="1" Grid.Column="1" IsReadOnly="True" ItemsSource="{Binding Properties}" SelectionMode="Single" AutoGenerateColumns="False" CanUserReorderColumns="False"
+                  CanUserResizeRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Property" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Value" Binding="{Binding Value}" FontWeight="Bold"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Right" Width="3" Margin="-1,0" VerticalAlignment="Stretch" BorderBrush="{DynamicResource BlackBrush}"
+                      BorderThickness="1" Background="{DynamicResource AccentColorBrush2}" />
     </Grid>
 </UserControl>

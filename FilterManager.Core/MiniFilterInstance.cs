@@ -26,7 +26,7 @@ namespace FilterManager.Core {
 
 			int hr = FilterVolumeInstanceFindFirst(volumeName, FilterVolumeInstanceInformationClass.FullInformation, new IntPtr(buffer), size, out returned, out hFind);
 			if (hr < 0)
-				Marshal.ThrowExceptionForHR(hr);
+				return null;
 
 			var instances = new List<MiniFilterInstance>(8);
 			do {

@@ -17,7 +17,7 @@ namespace FilterManager.Core {
 
 			int hr = FilterFindFirst(FilterInformationClass.FullInformation, new IntPtr(buffer), size, out returned, out hFind);
 			if (hr < 0)
-				Marshal.ThrowExceptionForHR(hr);
+				return null;
 
 			var filters = new List<MiniFilter>(8);
 			do {

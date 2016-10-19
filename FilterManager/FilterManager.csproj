@@ -76,7 +76,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\FilterTreeItemViewModel.cs" />
+    <Compile Include="ViewModels\InstanceTreeItemViewModel.cs" />
+    <Compile Include="ViewModels\ItemProperty.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SimpleTreeItemViewModel.cs" />
+    <Compile Include="ViewModels\TreeItemViewModelBase.cs" />
+    <Compile Include="ViewModels\VolumeTreItemViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
